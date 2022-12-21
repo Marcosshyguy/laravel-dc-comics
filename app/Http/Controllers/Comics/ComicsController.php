@@ -16,7 +16,7 @@ class ComicsController extends Controller
     public function index()
     {
         $comics = Comic::all();
-        return view('comics.index', compact('comics'));
+        return view('comic.index', compact('comics'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ComicsController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -37,7 +37,12 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $addedComic = new Comic();
+        $addedComic->fill($data);
+        $addedComic->save();
+
+        return redirect()->route('index');
     }
 
     /**
@@ -48,7 +53,13 @@ class ComicsController extends Controller
      */
     public function show($id)
     {
-        //
+        // $comic = Comic::findOrFail('$id');
+        // is the same thing
+        $comic = Comic::find($id);
+        if ($comic === null) {
+            abort('Page not found');
+        }
+        return view('show', compact('comic'));
     }
 
     /**
