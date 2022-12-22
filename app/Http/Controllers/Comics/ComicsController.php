@@ -15,8 +15,8 @@ class ComicsController extends Controller
      */
     public function index()
     {
-        $comics = Comic::all();
-        return view('comic.index', compact('comics'));
+        $comicses = Comic::all();
+        return view('comics.index', compact('comicses'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ComicsController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('comics.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ComicsController extends Controller
         if ($comic === null) {
             abort('Page not found');
         }
-        return view('comic.show', compact('comic'));
+        return view('comics.show', compact('comic'));
     }
 
     /**
