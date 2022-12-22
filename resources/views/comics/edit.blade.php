@@ -42,8 +42,8 @@
             <label for="type">Type</label>
             <div>
                 <select name="type" id="type" class="form-select">
-                    <option value="comic book">Comic book</option>
-                    <option value="graphic novel">Graphic novel</option>
+                    <option value="comic book" @selected($comicToChange->type === 'comic book')>Comic book</option>
+                    <option value="graphic novel" @selected($comicToChange->type === 'graphic novel')>Graphic novel</option>
                 </select>
 
             </div>
