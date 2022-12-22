@@ -18,6 +18,10 @@ class ComicsTableSeeder extends Seeder
         $comicsFromConfig = config('comics');
         foreach ($comicsFromConfig as  $comicConfig) {
             $newComic = new Comic();
+            // aggingere il fill se e solo se i nomi delle colonne della tabella corrispondono a alle chiavi nominative del file 
+            // bisogna però aggiungere un file fillable nel Model Comic 
+            // $newComic->fill($comicConfig);
+
             $newComic->title = $comicConfig['title'];
             $newComic->description = $comicConfig['description'];
             $newComic->thumb = $comicConfig['thumb'];

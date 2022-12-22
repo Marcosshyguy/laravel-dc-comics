@@ -59,7 +59,7 @@ class ComicsController extends Controller
         if ($comic === null) {
             abort('Page not found');
         }
-        return view('show', compact('comic'));
+        return view('comic.show', compact('comic'));
     }
 
     /**
