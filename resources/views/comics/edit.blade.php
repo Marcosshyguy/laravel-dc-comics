@@ -54,10 +54,6 @@
                     value="{{ $comicToChange->sale_date }}">
             </div>
 
-            {{-- <div class="mb-2">
-                <label for="type">Type</label>
-                <input type="text" class="form-control" id="type" name="type" value="{{ $comicToChange->type }}">
-            </div> --}}
             <button class="btn btn-dark" type="submit">Change</button>
         </form>
     </div>

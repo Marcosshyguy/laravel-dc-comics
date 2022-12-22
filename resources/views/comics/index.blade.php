@@ -18,7 +18,11 @@
                     <td>
                         <a href="{{ route('comics.show', $comic->id) }}" class="card-link">Show comic</a>
                         <a href="{{ route('comics.edit', $comic->id) }}" class="card-link">Update comic</a>
-                        <a href="{{ route('comics.show', $comic->id) }}" class="card-link">Delete comic</a>
+                        <form action="{{ route('comics.destroy', $comic->id) }}" class="d-inline" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete comic</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
