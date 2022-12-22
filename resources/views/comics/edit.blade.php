@@ -8,7 +8,7 @@
     <h2 class="text-center">Add new comic</h2>
     <p class="text-center">Now you are changing: {{ $comicToChange->title }}</p>
     <div class="container">
-        <form action="{{ route('comics.store') }}" method="POST">
+        <form action="{{ route('comics.update', $comicToChange->id) }}" method="POST">
             @method('PUT')
             @csrf
             <div class="mb-2">
