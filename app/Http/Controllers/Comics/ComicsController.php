@@ -53,7 +53,7 @@ class ComicsController extends Controller
      */
     public function show($id)
     {
-        // $comic = Comic::findOrFail('$id');
+        // $comic = Comic::findOrFail($id);
         // is the same thing
         $comic = Comic::find($id);
         if ($comic === null) {
@@ -70,7 +70,12 @@ class ComicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comicToChange = Comic::findOrFail($id);
+        // $comicToChange = Comic::find($id);
+        // if ($comicToChange === null) {
+        //     abort('Page not found');
+        // }
+        return view('comics.edit', compact('comicToChange'));
     }
 
     /**
@@ -82,7 +87,6 @@ class ComicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**

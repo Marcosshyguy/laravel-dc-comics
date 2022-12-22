@@ -17,7 +17,7 @@
                     <td>{{ $comic->price }}</td>
                     <td>
                         <a href="{{ route('comics.show', $comic->id) }}" class="card-link">Show comic</a>
-                        <a href="{{ route('comics.show', $comic->id) }}" class="card-link">Update comic</a>
+                        <a href="{{ route('comics.edit', $comic->id) }}" class="card-link">Update comic</a>
                         <a href="{{ route('comics.show', $comic->id) }}" class="card-link">Delete comic</a>
                     </td>
                 </tr>
