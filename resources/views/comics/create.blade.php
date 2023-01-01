@@ -41,7 +41,14 @@
 
             <div class="mb-2">
                 <label for="type">Type</label>
-                <input type="text" class="form-control" id="type" name="type">
+                <div>
+                    <select name="type" id="type" class="form-select">
+                        <option value=""></option>
+                        <option value="comic book">Comic book</option>
+                        <option value="graphic novel">Graphic novel</option>
+                    </select>
+
+                </div>
             </div>
 
 
