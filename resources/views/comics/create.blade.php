@@ -93,8 +93,8 @@
                     <select name="type" id="type" class="form-select @error('type') is-invalid @enderror"
                         value="{{ old('type') }}">
                         <option value="">Select type</option>
-                        <option value="comic book">Comic book</option>
-                        <option value="graphic novel">Graphic novel</option>
+                        <option value="comic book" @selected(old('type') === 'comic book')>Comic book</option>
+                        <option value="graphic novel" @selected(old('type') === 'graphic novel')>Graphic novel</option>
                     </select>
                     @error('type')
                         <div class="invalid-feedback">
