@@ -5,9 +5,50 @@ namespace App\Http\Controllers\Comics;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 
 class ComicsController extends Controller
 {
+
+    public function validation($data)
+    {
+        $validationRule = Validator::make(
+            $data,
+            [
+                'title' => 'required',
+                'description' => 'bail|required|min:5|max:300',
+                'thumb' => 'required',
+                'price' => 'required',
+                'series' => 'required',
+                'sale_date' => 'required',
+                'type' => 'required'
+            ],
+            $messages =
+                [
+                    'title.required' => 'Il :attribute deve essere inserito',
+                    'description.required' => 'La :attribute deve essere inserita',
+                    'description.min' => 'La :attribute deve essere maggiore di :min caratteri',
+                    'description.max' => 'La :attribute deve essere minore di :max caratteri',
+                    'thumb.required' => 'Il :attribute deve essere inserito',
+                    'price.required' => 'Il :attribute deve essere inserito',
+                    'series.required' => 'Il :attribute deve essere inserita',
+                    'sale_date.required' => 'La :attribute deve essere inserita',
+                    'type.required' => 'Il :attribute deve essere inserito',
+                ],
+            $costumAttributes = [
+                'title' => 'titolo',
+                'description' => 'descrizione',
+                'thumb' => 'percorso dell\'immagine',
+                'price' => 'prezzo',
+                'series' => 'nome della serie',
+                'sale_date' => 'data di vendita',
+                'type' => 'tipo di fumetto'
+            ]
+
+        )->validate();
+        return $validationRule;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,18 +78,19 @@ class ComicsController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate(
-            [
-                'title' => 'required',
-                'description' => 'bail|required|min:5|max:300',
-                'thumb' => 'required',
-                'price' => 'required',
-                'series' => 'required',
-                'sale_date' => 'required',
-                'type' => 'required'
-            ]
-        );
-        $data = $request->all();
+        // $validated = $request->validate(
+        //     [
+        //         'title' => 'required',
+        //         'description' => 'bail|required|min:5|max:300',
+        //         'thumb' => 'required',
+        //         'price' => 'required',
+        //         'series' => 'required',
+        //         'sale_date' => 'required',
+        //         'type' => 'required'
+        //     ]
+        // );
+
+        $data = $this->validation($request->all());
         $addedComic = new Comic();
         $addedComic->fill($data);
         $addedComic->save();
@@ -98,7 +140,18 @@ class ComicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dataUpdated = $request->all();
+        // $validated = $request->validate(
+        //     [
+        //         'title' => 'required',
+        //         'description' => 'bail|required|min:5|max:300',
+        //         'thumb' => 'required',
+        //         'price' => 'required',
+        //         'series' => 'required',
+        //         'sale_date' => 'required',
+        //         'type' => 'required'
+        //     ]
+        // );
+        $dataUpdated = $this->validation($request->all());
         $comic = Comic::findOrFail($id);
         $comic->update($dataUpdated);
         return redirect()->route('comics.index');
